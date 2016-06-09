@@ -1,0 +1,12 @@
+The purpose of this app is to demonstrate next-word prediction using n-grams and a modified version of Katz's backoff model. 
+This app is the final part of the [Coursera Data Science](https://www.coursera.org/specialization/jhudatascience) specialization Capstone Project. 
+
+### How-To Use ###
+Just enter one or more words in the input field. Up to five predictions for the next word are shown in a table below. The are ordered descending by their probability rank. The collected user-data is shown in a table below the predictions. These words will be considered more likely because we assume that words that already have been used are more likely to be relevant in this context. Therefore they will be assigned an increased probability if they have been found during the n-gram lookup in the dictionary.
+
+### Modification of Katz's Backoff Strategy ###
+The additional idea here is to collect relevant data from the context (in this app simply the data a user enters) and assign words from this corpus a higher probability as predictors. This hopefully leads to an increased relevance of the predictions.
+
+### Katz's Backoff Model ###
+A detailed explaination can be found in [this Wikipedia article](https://en.wikipedia.org/wiki/Katz's_back-off_model). Here is just a very rough summary:
+We asume that the user has entered n >=1 words. The algorithm now tries to find to most probable next word by looking up the frequency of the n words in a dictionary (aka maximum-likelihood estimate). In our case the dictionary at maximum contains 4-grams, so only the last three words will be considered. If no result have been found, the algorithm tries to repeat the search with n-1 words and so on. If results are found the conditional probabilities for the resulting sequences of words are calculated and the predictions are ranked accordingly.
